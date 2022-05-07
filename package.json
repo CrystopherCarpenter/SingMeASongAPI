@@ -12,6 +12,7 @@
         "migrate": "prisma migrate dev",
         "migrate-test": "dotenv -e .env.test prisma migrate dev",
         "studio": "npx prisma studio",
+        "studio-test": "dotenv -e .env.test prisma studio",
         "build": "tsc"
     },
     "prisma": {
