@@ -8,32 +8,32 @@ export async function main() {
         {
             name: 'Paranoid',
             youtubeLink: 'https://www.youtube.com/watch?v=0qanF-91aJo',
-            score: 0,
+            score: 5,
         },
         {
             name: 'I Think I´m Paranoid',
             youtubeLink: 'https://www.youtube.com/watch?v=ypr18UmxOas',
-            score: 1,
+            score: 4,
         },
         {
             name: 'My Favourite Game',
             youtubeLink: 'https://www.youtube.com/watch?v=u9WgtlgGAgs',
-            score: 2,
+            score: 3,
         },
         {
             name: 'Danse Macabre',
             youtubeLink: 'https://www.youtube.com/watch?v=YyknBTm_YyM',
-            score: 3,
+            score: 2,
         },
         {
             name: 'CHANSON DES TUVACHES',
             youtubeLink: 'https://www.youtube.com/watch?v=Syw8q4vgc3A',
-            score: 4,
+            score: 1,
         },
         {
             name: 'Les Marionettes',
             youtubeLink: 'https://www.youtube.com/watch?v=ikBg4BDgsso',
-            score: 5,
+            score: 0,
         },
     ];
 
