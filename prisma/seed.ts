@@ -6,6 +6,32 @@ type RecommendationData = Omit<Recommendation, 'id'>;
 export async function main() {
     const recommendations: RecommendationData[] = [
         {
+            name: 'mOBSCENE',
+            youtubeLink: '   https://www.youtube.com/watch?v=mdwZV4Y95Nw',
+            score: 10,
+        },
+        {
+            name: 'Gangsta´s Paradise',
+            youtubeLink: 'https://www.youtube.com/watch?v=fPO76Jlnz6c',
+            score: 9,
+        },
+        {
+            name: ' The Beautiful People',
+            youtubeLink: 'https://www.youtube.com/watch?v=Ypkv0HeUvTc',
+            score: 8,
+        },
+        {
+            name: 'Smile',
+            youtubeLink: 'https://www.youtube.com/watch?v=0WxDrVUrSvI',
+            score: 7,
+        },
+        {
+            name: 'Somewhere Only We Know',
+            youtubeLink: 'https://www.youtube.com/watch?v=mer6X7nOY_o',
+            score: 6,
+        },
+
+        {
             name: 'Paranoid',
             youtubeLink: 'https://www.youtube.com/watch?v=0qanF-91aJo',
             score: 5,

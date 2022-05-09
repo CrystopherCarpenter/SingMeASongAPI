@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import { testsService } from '../services/testsService.js';
+import { e2eService } from '../services/e2eService.js';
 
 async function truncate(req: Request, res: Response) {
-    await testsService.truncate();
+    await e2eService.truncate();
 
     res.sendStatus(200);
 }
 
 async function seed(req: Request, res: Response) {
-    await testsService.seed();
+    await e2eService.seed();
 
     res.sendStatus(200);
 }
