@@ -1,10 +1,57 @@
-import { prisma } from '../src/database.js';
-import { Recommendation } from '@prisma/client';
+import { prisma } from '../../../src/database';
 
-type RecommendationData = Omit<Recommendation, 'id'>;
+export async function lowScoreRecommendationFactory() {
+    const recommendation = {
+        id: 999,
+        name: 'Beautiful Day',
+        youtubeLink: 'https://www.youtube.com/watch?v=co6WMzDOh1o',
+        score: -5,
+    };
 
-export async function main() {
-    const recommendations: RecommendationData[] = [
+    await prisma.recommendation.upsert({
+        where: { id: recommendation.id },
+        update: {},
+        create: { ...recommendation },
+    });
+
+    return recommendation.id;
+}
+
+export async function recommendationFactory(data) {
+    const response = await prisma.recommendation.create({
+        data,
+    });
+
+    return response;
+}
+
+type dataType =
+    | 'valid'
+    | 'invalidName'
+    | 'invalidLink'
+    | 'emptyName'
+    | 'emptyLink';
+
+export function recommendationBodyFactory(type: dataType) {
+    const recommendation = {
+        name: 'On Melancholy Hill',
+        youtubeLink: 'https://www.youtube.com/watch?v=p00v9ZFhWJM',
+    };
+
+    if (type === 'valid') return { ...recommendation };
+    if (type === 'invalidName')
+        return { ...recommendation, name: ['invalid', 'name'] };
+    if (type === 'emptyName') return { ...recommendation, name: '' };
+    if (type === 'invalidLink')
+        return {
+            ...recommendation,
+            youtubeLink: 'https://www.invalidlink.com',
+        };
+    if (type === 'emptyLink') return { ...recommendation, youtubeLink: '' };
+}
+
+export async function manyRecommendationsFactory() {
+    const data = [
         {
             name: 'mOBSCENE',
             youtubeLink: '   https://www.youtube.com/watch?v=mdwZV4Y95Nw',
@@ -62,20 +109,9 @@ export async function main() {
         },
     ];
 
-    for (let i = 0; i < recommendations.length; i++) {
-        await prisma.recommendation.upsert({
-            where: { name: recommendations[i].name },
-            update: {},
-            create: { ...recommendations[i] },
-        });
-    }
-}
-
-main()
-    .catch((e) => {
-        console.log(e);
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
+    const response = await prisma.recommendation.createMany({
+        data,
     });
+
+    return response;
+}
