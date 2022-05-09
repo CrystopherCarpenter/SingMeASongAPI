@@ -5,6 +5,7 @@ import {
     recommendationFactory,
     recommendationBodyFactory,
     manyRecommendationsFactory,
+    manyRecommendationsDataFactory,
 } from './factories/recommendationFactory';
 
 describe('POST /recommendations', () => {
@@ -127,7 +128,8 @@ describe('GET /recommendations/', () => {
     afterAll(disconnect);
 
     it('should return last 10 recommendations', async () => {
-        await manyRecommendationsFactory();
+        const data = manyRecommendationsDataFactory();
+        await manyRecommendationsFactory(data);
 
         const response = await supertest(app).get('/recommendations/').send();
 
@@ -157,15 +159,14 @@ describe('GET /recommendations/top/:amount', () => {
     afterAll(disconnect);
 
     it('should return top x recommendations', async () => {
-        await manyRecommendationsFactory();
+        const data = manyRecommendationsDataFactory();
+        await manyRecommendationsFactory(data);
 
-        const amount = Math.floor(Math.random() * 10 + 2);
+        const amount = Math.floor(Math.random() * 9 + 2);
 
         const response = await supertest(app)
             .get(`/recommendations/top/${amount}`)
             .send();
-
-        console.log(response.body);
 
         expect(response.body.length).toEqual(amount);
         expect(response.body[1].score).toBeLessThanOrEqual(
@@ -180,7 +181,8 @@ describe('GET /recommendations/random', () => {
     afterAll(disconnect);
 
     it('should return a recommendation', async () => {
-        await manyRecommendationsFactory();
+        const data = manyRecommendationsDataFactory();
+        await manyRecommendationsFactory(data);
 
         const response = await supertest(app)
             .get('/recommendations/random')
