@@ -63,13 +63,13 @@ export async function main() {
         },
     ];
 
-    recommendations.forEach(async (recommendation) => {
+    for (let i = 0; i < recommendations.length; i++) {
         await prisma.recommendation.upsert({
-            where: { name: recommendation.name },
+            where: { name: recommendations[i].name },
             update: {},
-            create: { ...recommendation },
+            create: { ...recommendations[i] },
         });
-    });
+    }
 }
 
 main()
